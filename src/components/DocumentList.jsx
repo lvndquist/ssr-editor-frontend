@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function DocumentList() {
     
@@ -23,7 +24,11 @@ export default function DocumentList() {
     return (
         <div className = "document-list-container">
             {documents.map((document) => (
-                <a className = "document-list-item" href={`/document/${document._id}`}>
+                <Link 
+                    to={`/document/${document._id}`} 
+                    className='document-list-item'
+                    key={document._id}
+                > 
                     <span className="document-list-item-title">
                         {document.title}
                     </span>                    
@@ -37,11 +42,8 @@ export default function DocumentList() {
                         <span className="document-list-item-date">
                             @{document.updatedAt.slice(0, 10)}
                         </span>
-                        {/* <span className="document-list-item-time">
-                            {document.updatedAt.slice(11, 19)}
-                        </span> */}
-                    </span>
-                </a>                
+                    </span>                    
+                </Link>
             ))}
         </div>
     )

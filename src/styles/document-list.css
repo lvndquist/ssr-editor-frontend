@@ -23,7 +23,7 @@
 }
 
 .document-list-item-title {
-    font-size: .65rem;
+    font-size: .5rem;
     text-align: center;
     font-weight: bold;
     margin-top: .2rem;
@@ -47,7 +47,7 @@
 .document-list-item-text {
     display: block;
     text-align: left;
-    font-size: .45rem;
+    font-size: .4rem;
     margin-left: .5rem;
     font-style: italic;
 }

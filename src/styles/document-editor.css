@@ -1,0 +1,51 @@
+.document-editor {
+    display: flex;
+    justify-content: center;
+}
+
+.document-editor-container {
+    width: 43%;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 2.5rem 0 2.5rem;
+
+}
+
+.document-editor-text {
+    min-height: 73vh;
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    resize: none;
+}
+
+.document-editor-text::-webkit-scrollbar {
+  display: none;
+}
+
+.document-editor-title {
+    font-size: 2.1rem;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    line-height: 1.2;
+    letter-spacing: -.1rem;
+    padding: 0 0 .5rem 0;
+    margin: 0;
+}
+
+.document-editor-container.loading .document-editor-text,
+.document-editor-container.loading .document-editor-title
+{
+    opacity: 0.5;
+}

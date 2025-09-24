@@ -35,3 +35,19 @@ h1, h2, h3, p {
 .document-list-item-date, .document-list-item-time {
     color: #ffffff;
 }
+
+.document-editor-container {
+    background-color: #ffffff;
+}
+
+.document-editor-title, .document-editor-text {
+    color: #383737;
+}
+
+.document-editor-container.not-found .document-editor-text,
+.document-editor-container.error .document-editor-text,
+.document-editor-container.not-found .document-editor-title,
+.document-editor-container.error .document-editor-title
+{
+    color: #eb9e9e;
+}
