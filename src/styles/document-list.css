@@ -23,7 +23,10 @@
 }
 
 .document-list-item-title {
-    font-size: 1rem;
+    font-size: .65rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: .2rem;
 }
 
 .document-list-item-date, .document-list-item-time {
@@ -35,4 +38,16 @@
     justify-content: center;
     text-align: center;
     padding: .2rem;
+}
+
+.document-list-item-preview {
+    flex: 1;
+}
+
+.document-list-item-text {
+    display: block;
+    text-align: left;
+    font-size: .45rem;
+    margin-left: .5rem;
+    font-style: italic;
 }

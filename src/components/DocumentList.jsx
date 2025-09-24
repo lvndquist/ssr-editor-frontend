@@ -26,7 +26,13 @@ export default function DocumentList() {
                 <a className = "document-list-item" href={`/document/${document._id}`}>
                     <span className="document-list-item-title">
                         {document.title}
+                    </span>                    
+                    <span className='document-list-item-preview'>
+                        <span className="document-list-item-text">
+                            {document.text}
+                        </span>
                     </span>
+
                     <span className='document-list-item-container'>
                         <span className="document-list-item-date">
                             @{document.updatedAt.slice(0, 10)}

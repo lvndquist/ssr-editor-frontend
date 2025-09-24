@@ -28,7 +28,7 @@ h1, h2, h3, p {
     background-color: #476FCC;
 }
 
-.document-list-item-title {
+.document-list-item-title, .document-list-item-text {
     color: #383737;
 }
 
