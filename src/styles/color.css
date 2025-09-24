@@ -1,0 +1,37 @@
+body {
+    background-color: #242222;
+}
+
+header, footer {
+    background-color: #383737;
+    color: #ffffff;
+
+}
+
+h1, h2, h3, p {
+    color: #ffffff;
+}
+
+.add-btn {
+    background-color: #476FCC;
+}
+
+.document-list-item,
+.document-list-item:visited,
+.document-list-item:hover,
+.document-list-item:active
+{
+    background-color: #ffffff;
+}
+
+.document-list-item-container {
+    background-color: #476FCC;
+}
+
+.document-list-item-title {
+    color: #383737;
+}
+
+.document-list-item-date, .document-list-item-time {
+    color: #ffffff;
+}

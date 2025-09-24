@@ -1,0 +1,14 @@
+.add-btn {
+    align-items: center;
+    justify-content: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    display: inline-flex;
+    text-decoration: none;
+    stroke-width: 10px;
+    font-weight: 900;
+}

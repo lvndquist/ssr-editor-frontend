@@ -1,0 +1,38 @@
+.document-list-container {
+    list-style-type: none;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem; 
+}
+
+.document-list-item {
+    min-width: 8.5rem;
+    min-height: 11.5rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.document-list-item:hover {
+    transform: translateY(-4px);
+    
+}
+
+.document-list-item-title {
+    font-size: 1rem;
+}
+
+.document-list-item-date, .document-list-item-time {
+    font-size: 0.8rem;
+}
+
+.document-list-item-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: .2rem;
+}

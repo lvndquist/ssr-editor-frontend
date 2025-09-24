@@ -1,5 +1,8 @@
-export default function Header() {
-    <footer>
-        <p class="copyright">&copy; Emil Folino</p>
-    </footer>
+export default function Footer() {
+    return (
+        <footer>
+           <p className="copyright">&copy; lvndquist</p>
+        </footer>
+    )
+    
 }
