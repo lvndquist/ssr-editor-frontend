@@ -7,8 +7,10 @@
 }
 
 .document-list-item {
-    min-width: 8.5rem;
-    min-height: 11.5rem;
+    min-width: 10.7rem;
+    max-width: 10.7rem;
+    min-height: 13.6rem;
+    max-height: 13.6rem;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
@@ -23,10 +25,14 @@
 }
 
 .document-list-item-title {
-    font-size: .5rem;
-    text-align: center;
+    display: block;
+    font-size: .65rem;
+    text-align: left;
     font-weight: bold;
     margin-top: .2rem;
+    margin-left: .5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .document-list-item-date, .document-list-item-time {
@@ -47,7 +53,9 @@
 .document-list-item-text {
     display: block;
     text-align: left;
-    font-size: .4rem;
+    font-size: .5rem;
     margin-left: .5rem;
     font-style: italic;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

@@ -1,0 +1,40 @@
+.document-editor-bar {
+    padding: .5rem 0;
+    box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1.6rem;
+    align-items: center;
+    min-height: 3rem;
+}
+
+.document-editor-back-carrot {
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.4rem;
+}
+
+.document-editor-back-link {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.document-editor-bar-changes {
+    padding: 0;
+    margin: 0;
+    font-size: .8rem;
+    font-style: italic;
+}
+
+.document-editor-bar-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+

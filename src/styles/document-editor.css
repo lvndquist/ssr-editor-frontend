@@ -1,19 +1,34 @@
 .document-editor {
     display: flex;
     justify-content: center;
+    /* text-align: center; */
+    /* align-items: center; */
+    margin-top: 0;
+    flex: 1;
 }
 
 .document-editor-container {
     width: 43%;
-    min-height: 85vh;
     display: flex;
     flex-direction: column;
-    padding: 2.5rem 2.5rem 0 2.5rem;
+    margin: .5rem;
+}
 
+.document-editor-title {
+    font-size: 2.1rem;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    line-height: 1.2;
+    letter-spacing: -.01rem;
+    padding-bottom: .5rem;
+    margin: 0;
+    padding: .1rem 2rem;
+    padding-top: .5rem;
 }
 
 .document-editor-text {
-    min-height: 73vh;
+    /* min-height: 75vh; */
     padding: 0;
     margin: 0;
     word-wrap: break-word;
@@ -27,25 +42,26 @@
     font-size: 1.1rem;
     line-height: 1.4;
     resize: none;
+    flex: 1;
+    padding: 0 2rem;
 }
 
 .document-editor-text::-webkit-scrollbar {
   display: none;
 }
 
-.document-editor-title {
-    font-size: 2.1rem;
-    font-weight: 600;
-    border: none;
-    outline: none;
-    line-height: 1.2;
-    letter-spacing: -.1rem;
-    padding: 0 0 .5rem 0;
-    margin: 0;
-}
+
 
 .document-editor-container.loading .document-editor-text,
 .document-editor-container.loading .document-editor-title
 {
     opacity: 0.5;
+}
+
+.document-editor-date {
+    font-size: 0.7rem;
+    padding: 0;
+    margin: 0;
+    font-style: italic;
+    padding: 0 2rem;
 }

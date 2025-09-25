@@ -1,7 +1,7 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import IndexPage from './components/IndexPage';
-import DocumentEditor from './components/DocumentEditor';
+import IndexPage from './components/index/IndexPage';
+import DocumentEditor from './components/editor/DocumentEditor';
 
 
 import {Routes, Route} from 'react-router-dom';
@@ -11,7 +11,7 @@ function App() {
     <>
       <div className='app-container'>
         <Header />
-        <main className = "main">
+        <main>
           <Routes>
             <Route path="/" element={<IndexPage />} />
             <Route path="/document/:id" element={<DocumentEditor />} />

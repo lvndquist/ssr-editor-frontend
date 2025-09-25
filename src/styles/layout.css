@@ -48,13 +48,18 @@ p {
 }
 
 header {
-    padding: .5rem 3rem;
+    padding: .3rem 3rem;
 }
 
 main {
     width: 100%;
-    margin: 1.4rem 3rem;
+    display: flex;
     flex: 1 0 auto;
+    flex-direction: column;
+}
+
+.index-container {
+    margin: 1.4rem 3rem;
 }
 
 .new-doc {
@@ -62,15 +67,8 @@ main {
     flex-direction: column;
 }
 
-input,
-textarea {
-    margin-bottom: 1.4rem;
-    font-size: 1rem;
-    padding: 1.4rem;
-}
-
 footer {
-    padding: .5rem 3rem;
+    padding: .3rem 3rem;
     flex-shrink: 0;
 }
 
@@ -84,3 +82,9 @@ footer {
     padding: 0;
     margin: 0;
 }
+
+.header-link {
+    text-decoration: none;
+}
+
+

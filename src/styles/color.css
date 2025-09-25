@@ -2,10 +2,9 @@ body {
     background-color: #242222;
 }
 
-header, footer {
+header, footer, .header-link {
     background-color: #383737;
     color: #ffffff;
-
 }
 
 h1, h2, h3, p {
@@ -13,7 +12,7 @@ h1, h2, h3, p {
 }
 
 .add-btn {
-    background-color: #476FCC;
+    background-color: #b37dce;
 }
 
 .document-list-item,
@@ -25,7 +24,7 @@ h1, h2, h3, p {
 }
 
 .document-list-item-container {
-    background-color: #476FCC;
+    background-color: #b37dce;
 }
 
 .document-list-item-title, .document-list-item-text {
@@ -49,5 +48,39 @@ h1, h2, h3, p {
 .document-editor-container.not-found .document-editor-title,
 .document-editor-container.error .document-editor-title
 {
-    color: #eb9e9e;
+    color: #d94a4a;
+}
+
+.document-editor-date {
+    color: #383737;    
+}
+
+.document-editor-bar {
+    background-color: #b37dce;
+}
+
+.document-save {
+    border: 1px solid #be8fd5;
+    background-color: #d6aaec;
+    color: #000000;
+}
+
+.document-save.saving {
+    background-color: #ecd7b2;
+}
+
+.document-save.error {
+    background-color: #eb9e9e;
+}
+
+.document-save.saved {
+    background-color: #9ae8ce;
+}
+
+.document-editor-back-carrot,
+.document-editor-back-carrot:visited,
+.document-editor-back-carrot:hover,
+.document-editor-back-carrot:active 
+{
+    color: #ffffff;
 }

@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
+
 export default function Header() {
     return (
         <header>
-            <h1>SSR Editor</h1>
+            <h1><Link to={"/"} className='header-link'>SSR Editor</Link></h1>
         </header>    
     )
 }
-    
