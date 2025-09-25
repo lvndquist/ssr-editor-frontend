@@ -12,7 +12,7 @@ export default function DocumentEditor() {
     const [hasChanged, setHasChanged] = useState(false);
 
     useEffect(() => {
-        fetch(`https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/${id}`)
+        fetch(`https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/document/${id}`)
         .then((res) => {
             if (!res.ok){
                 throw new Error(`HTTP ERROR: ${res.status}`);
