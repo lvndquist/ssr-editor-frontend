@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/lvndquist/ssr-editor-frontend",
+  "homepage": "https://lvndquist.github.io/ssr-editor-frontend",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
