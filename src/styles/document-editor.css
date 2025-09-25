@@ -55,14 +55,6 @@
   display: none;
 }
 
-
-
-.document-editor-container.loading .document-editor-text,
-.document-editor-container.loading .document-editor-title
-{
-    opacity: 0.5;
-}
-
 .document-editor-date {
     font-size: 0.7rem;
     padding: 0;

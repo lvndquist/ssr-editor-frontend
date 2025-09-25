@@ -60,7 +60,7 @@ h1, h2, h3, p {
 }
 
 .document-save {
-    border: 1px solid #be8fd5;
+    /* border: 1px solid #be8fd5; */
     background-color: #d6aaec;
     color: #000000;
 }
@@ -83,4 +83,11 @@ h1, h2, h3, p {
 .document-editor-back-carrot:active 
 {
     color: #ffffff;
+}
+
+.document-editor-container.loading .document-editor-text,
+.document-editor-container.loading .document-editor-title
+{
+    /* opacity: 0.5; */
+    color: rgba(0, 0, 0, 0.5);
 }
