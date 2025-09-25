@@ -7,7 +7,7 @@ import SaveDocument from './SaveDocument.jsx';
 export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
     
     const handleSave = async (doc) => {
-        const res = await fetch(`http://localhost:3000/document/${id}`, {
+        const res = await fetch(`https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

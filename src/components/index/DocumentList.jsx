@@ -7,7 +7,7 @@ export default function DocumentList() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:3000/")
+        fetch("https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/")
             .then((res) => res.json())
             .then((data) => {
             setDocuments(data);
