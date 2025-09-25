@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://lvndquist.github.io/ssr-editor-frontend",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
