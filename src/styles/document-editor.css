@@ -8,7 +8,7 @@
 }
 
 .document-editor-container {
-    width: 43%;
+    width: 47%;
     display: flex;
     flex-direction: column;
     margin: .5rem;
@@ -25,6 +25,11 @@
     margin: 0;
     padding: .1rem 2rem;
     padding-top: .5rem;
+    /* word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word; */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .document-editor-text {
