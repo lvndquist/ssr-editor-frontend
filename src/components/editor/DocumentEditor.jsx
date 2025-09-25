@@ -72,18 +72,6 @@ export default function DocumentEditor() {
         }   
     }
 
-    // const hasChanges = () => {
-    //     if (!document ||!originalDoc) {
-    //         return false;
-    //     }
-    //     console.log(document.title !== originalDoc.title)
-    //     console.log(document.text !== originalDoc.text)
-    //     return (
-    //             document.title !== originalDoc.title ||
-    //             document.text !== originalDoc.text
-    //     );
-    // }
-
     useEffect(() => {
         if (!document ||!originalDoc) {
             return;
