@@ -4,5 +4,4 @@ export default function Footer() {
            <p className="copyright">&copy; lvndquist</p>
         </footer>
     )
-    
 }

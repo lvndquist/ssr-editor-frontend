@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+const apiUrl = import.meta.env.API_URL;
+
 export default function DocumentList() {
-    
+
     const [documents, setDocuments] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/")
+        fetch(`${apiUrl}/documents`)
             .then((res) => res.json())
             .then((data) => {
             setDocuments(data);
@@ -24,14 +26,14 @@ export default function DocumentList() {
     return (
         <div className = "document-list-container">
             {documents.map((document) => (
-                <Link 
-                    to={`/document/${document._id}`} 
+                <Link
+                    to={`/document/${document._id}`}
                     className='document-list-item'
                     key={document._id}
-                > 
+                >
                     <span className="document-list-item-title">
                         {document.title}
-                    </span>                    
+                    </span>
                     <span className='document-list-item-preview'>
                         <span className="document-list-item-text">
                             {document.text}
@@ -42,7 +44,7 @@ export default function DocumentList() {
                         <span className="document-list-item-date">
                             @{document.updatedAt.slice(0, 10)}
                         </span>
-                    </span>                    
+                    </span>
                 </Link>
             ))}
         </div>

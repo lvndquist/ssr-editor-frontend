@@ -20,7 +20,7 @@ export default function DocumentCreator() {
         return {
             title: document.title,
             text: document.text || "",
-        }   
+        }
     }
 
     useEffect(() => {

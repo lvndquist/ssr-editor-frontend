@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import SaveDocument from '../editor/SaveDocument.jsx';
 
+const apiUrl = import.meta.env.API_URL;
+
 export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
     
     const handleSave = async (doc) => {
-        const res = await fetch("https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/document/", {
+        const res = await fetch(`${apiUrl}/documents/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

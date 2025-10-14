@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DocumentEditorBar from './DocumentEditorBar.jsx';
 
+const apiUrl = import.meta.env.API_URL;
+
 export default function DocumentEditor() {
-    
+
     const [document, setDocument] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +14,7 @@ export default function DocumentEditor() {
     const [hasChanged, setHasChanged] = useState(false);
 
     useEffect(() => {
-        fetch(`https://jsramverk-texteditor-jolq24-fthwemdtfvcrfehy.swedencentral-01.azurewebsites.net/document/${id}`)
+        fetch(`${apiUrl}/documents/${id}`)
         .then((res) => {
             if (!res.ok){
                 throw new Error(`HTTP ERROR: ${res.status}`);
@@ -40,7 +42,7 @@ export default function DocumentEditor() {
                 state: "loading",
                 createdAt: "",
                 updatedAt: ""
-            } 
+            }
         }
 
         if (error) {
@@ -50,7 +52,7 @@ export default function DocumentEditor() {
                 state: "error",
                 createdAt: "",
                 updatedAt: ""
-            }     
+            }
         }
 
         if (!document) {
@@ -60,7 +62,7 @@ export default function DocumentEditor() {
                 state: "not-found",
                 createdAt: "",
                 updatedAt: ""
-            }   
+            }
         }
 
         return {
@@ -69,7 +71,7 @@ export default function DocumentEditor() {
             state: "loaded",
             createdAt: document.createdAt,
             updatedAt: document.updatedAt
-        }   
+        }
     }
 
     useEffect(() => {
@@ -89,7 +91,7 @@ export default function DocumentEditor() {
     }
 
     const content = showContent();
-    
+
     return (
         <div className = "document-editor">
             <div className={`document-editor-container ${content.state}`}>
@@ -100,7 +102,7 @@ export default function DocumentEditor() {
                     onSaved={() => setOriginalDoc(document)}
                 ></DocumentEditorBar>
 
-                <input 
+                <input
                     className="document-editor-title"
                     value = {content.title}
                     readOnly={content.state !== "loaded"}
@@ -109,7 +111,7 @@ export default function DocumentEditor() {
                     >
                 </input>
 
-                <textarea 
+                <textarea
                     className = "document-editor-text"
                     value={content.text}
                     readOnly={content.state !== "loaded"}
@@ -128,7 +130,7 @@ export default function DocumentEditor() {
                         </p>
                     </>
                 ) : null}
-                
+
             </div>
         </div>
     )

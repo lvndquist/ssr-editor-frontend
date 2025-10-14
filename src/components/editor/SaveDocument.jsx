@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function SaveDocument({document, save, disabled = false, onSaved}) {
     const [isSaving, setIsSaving] = useState(false);
     const [saveStatus, setSaveStatus] = useState("");
-    
+
     const handleSave = async () => {
         if (!document || disabled) {
             return;
@@ -11,7 +11,7 @@ export default function SaveDocument({document, save, disabled = false, onSaved}
 
         setIsSaving(true);
         setSaveStatus("");
-        
+
         try {
             await save(document);
             setSaveStatus("saved");
@@ -51,13 +51,13 @@ export default function SaveDocument({document, save, disabled = false, onSaved}
         }
         return documentSaveClass;
     }
-    
+
     return (
         <button
             onClick={handleSave}
             disabled={isSaving || disabled}
             className={buttonClass()}
-        >    
+        >
             {buttonText()}
         </button>
     )
