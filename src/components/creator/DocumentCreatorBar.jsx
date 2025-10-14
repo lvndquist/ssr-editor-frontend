@@ -3,10 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import SaveDocument from '../editor/SaveDocument.jsx';
 
-const apiUrl = import.meta.env.API_URL;
-
 export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
-    
+
     const handleSave = async (doc) => {
         const res = await fetch(`${apiUrl}/documents/`, {
             method: "POST",
@@ -25,20 +23,20 @@ export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
 
         return await res.json();
     };
-    
+
     console.log(hasChanges)
     return (
         <div className='document-editor-bar'>
             <Link to={"/"} className='document-editor-back-link'>
                 <FontAwesomeIcon className='document-editor-back-carrot' icon={faChevronLeft}></FontAwesomeIcon>
             </Link>
-            
+
             <div className='document-editor-bar-control'>
                 {hasChanges ? (
                     <>
                         <p className = "document-editor-bar-changes">Osparade ändringar</p>
                     </>
-                ) : 
+                ) :
                     <>
                         <p className = "document-editor-bar-changes">Inga osparade ändringar</p>
                     </>

@@ -48,7 +48,7 @@ p {
 }
 
 header {
-    padding: .3rem 3rem;
+    padding: .3rem 2rem;
 }
 
 main {
@@ -68,7 +68,7 @@ main {
 }
 
 footer {
-    padding: .3rem 3rem;
+    padding: .3rem 2rem;
     flex-shrink: 0;
 }
 
