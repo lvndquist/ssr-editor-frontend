@@ -59,10 +59,11 @@ export default function Register() {
     }
 
     return (
-        <div>
-            <h1>Skapa ett konto</h1>
-            <form onSubmit={handleRegisterForm}>
+        <div className="register-container">
+            <h1 className="register-form-h1">Skapa ett konto</h1>
+            <form className="register-form" onSubmit={handleRegisterForm}>
                 <input
+                    className="register-form-input"
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -71,6 +72,7 @@ export default function Register() {
                 />
 
                 <input
+                    className="register-form-input"
                     type="password"
                     placeholder="Lösenord"
                     value={password}
@@ -79,6 +81,7 @@ export default function Register() {
                 />
 
                 <input
+                    className="register-form-input"
                     type="password"
                     placeholder="Upprepa lösenord"
                     value={passwordDupe}
@@ -87,11 +90,11 @@ export default function Register() {
                 />
 
                 {error &&
-                    <p>{error}</p>
+                    <p className="register-form-err">{error}</p>
                 }
-                <button type="submit"> Skapa </button>
+                <button className="register-form-btn" type="submit"> Skapa </button>
             </form>
-            <p><Link to="/login">Logga in.</Link></p>
+            <p className="register-form-link"><Link to="/login">Logga in</Link></p>
         </div>
     );
 }

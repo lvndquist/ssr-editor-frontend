@@ -91,3 +91,17 @@ h1, h2, h3, p {
     /* opacity: 0.5; */
     color: rgba(0, 0, 0, 0.5);
 }
+
+.login-form-btn,
+.register-form-btn
+{
+    background-color: #383737;
+    color: #ffffff;
+}
+
+
+.login-form-link > a,
+.register-form-link > a
+{
+    color: #ffffff;
+}

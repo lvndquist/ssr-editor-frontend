@@ -50,10 +50,11 @@ export default function Login({ onLogin }) {
     }
 
     return (
-        <div>
-            <h1>Logga in</h1>
-            <form onSubmit={handleLoginForm}>
+        <div className="login-container">
+            <h1 className="login-form-h1">Logga in</h1>
+            <form className="login-form" onSubmit={handleLoginForm}>
                 <input
+                    className="login-form-input"
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -62,6 +63,7 @@ export default function Login({ onLogin }) {
                 />
 
                 <input
+                    className="login-form-input"
                     type="password"
                     placeholder="Lösenord"
                     value={password}
@@ -72,9 +74,9 @@ export default function Login({ onLogin }) {
                 {error &&
                     <p>{error}</p>
                 }
-                <button type="submit"> Logga in</button>
+                <button className="login-form-btn" type="submit"> Logga in</button>
             </form>
-            <p><Link to="/register">Registrera ett konto.</Link></p>
+            <p className="login-form-link"><Link to="/register" >Registrera ett konto</Link></p>
         </div>
     );
 }

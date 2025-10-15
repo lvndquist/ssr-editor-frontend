@@ -6,7 +6,7 @@ import DocumentCreator from './components/creator/DocumentCreator';
 import Login from './components/index/Login'
 import Register from './components/index/Register'
 
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
 
@@ -24,12 +24,15 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
+        <>
             <div className='app-container'>
                 <Header />
                 <main>
                     <Routes>
-                        <Route path="/login" element={authToken ? <Navigate to="/" /> : <Login onLogin={loginHandle}/>}/>
+                        <Route
+                            path="/login"
+                            element={authToken ? <Navigate to="/" /> : <Login onLogin={loginHandle}/>}
+                        />
                         <Route path="/register" element={authToken ? <Navigate to="/" /> : <Register/>}/>
                         <Route path="/" element={authToken ? <IndexPage/> : <Navigate to="/login"/>}/>
                         <Route path="/document/:id" element={authToken ? <DocumentEditor/> : <Navigate to="/login"/>}/>
@@ -38,7 +41,7 @@ function App() {
                 </main>
                 <Footer />
             </div>
-        </BrowserRouter>
+        </>
     )
 }
 
