@@ -3,18 +3,15 @@ import Footer from './components/Footer';
 import IndexPage from './components/index/IndexPage';
 import DocumentEditor from './components/editor/DocumentEditor';
 import DocumentCreator from './components/creator/DocumentCreator';
-import AddButton from './AddButton';
-import DocumentList from './DocumentList';
 import Login from './components/index/Login'
 import Register from './components/index/Register'
 
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
-import {Routes, Route} from 'react-router-dom';
 
 
 function App() {
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
-    const [register, setRegister] = useState(false);
 
     function loginHandle(newAuthToken) {
         localStorage.setItem("authToken", newAuthToken);
@@ -27,35 +24,21 @@ function App() {
     }
 
     return (
-        <div className='app-container'>
-            <Header />
-            <main>
-            {token ? (
-                <>
+        <BrowserRouter>
+            <div className='app-container'>
+                <Header />
+                <main>
                     <Routes>
-                        <Route path="/" element={<IndexPage />} />
-                        <Route path="/document/:id" element={<DocumentEditor />} />
-                        <Route path="/create" element={<DocumentCreator />} />
+                        <Route path="/login" element={authToken ? <Navigate to="/" /> : <Login onLogin={loginHandle}/>}/>
+                        <Route path="/register" element={authToken ? <Navigate to="/" /> : <Register/>}/>
+                        <Route path="/" element={authToken ? <IndexPage/> : <Navigate to="/login"/>}/>
+                        <Route path="/document/:id" element={authToken ? <DocumentEditor/> : <Navigate to="/login"/>}/>
+                        <Route path="/create" element={authToken ? <DocumentCreator/> : <Navigate to="/login"/>}/>
                     </Routes>
-
-                    <div className='index-container'>
-                        <h2 className = "create-doc">Dokument <AddButton /></h2>
-                        <DocumentList />
-                    </div>
-                </>
-            ) : register ? (
-                <>
-                    <Register onRegister={() => setRegister(false)} />
-                </>
-            ) : (
-                <>
-                    <Login onLogin={loginHandle}/>
-                </>
-            )}
-
-            </main>
-            <Footer />
-        </div>
+                </main>
+                <Footer />
+            </div>
+        </BrowserRouter>
     )
 }
 
