@@ -6,7 +6,7 @@ import SaveDocument from './SaveDocument.jsx';
 const apiUrl = import.meta.env.API_URL;
 
 export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
-    
+
     const handleSave = async (doc) => {
         const res = await fetch(`${apiUrl}/documents/${id}`, {
             method: "PUT",
@@ -25,21 +25,21 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
 
         return await res.json();
     };
-    
+
     // console.log(hasChanges)
     return (
         <div className='document-editor-bar'>
             <Link to={"/"} className='document-editor-back-link'>
                 <FontAwesomeIcon className='document-editor-back-carrot' icon={faChevronLeft}></FontAwesomeIcon>
             </Link>
-            
+
             {doc.state === "loaded" ? (
                 <div className='document-editor-bar-control'>
                     {hasChanges ? (
                         <>
                             <p className = "document-editor-bar-changes">Osparade ändringar</p>
                         </>
-                    ) : 
+                    ) :
                         <>
                             <p className = "document-editor-bar-changes">Inga osparade ändringar</p>
                         </>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const apiUrl = import.meta.env.API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function DocumentList() {
 
@@ -9,7 +9,12 @@ export default function DocumentList() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${apiUrl}/documents`)
+        const token = localStorage.getItem("authToken");
+        fetch(`${apiUrl}/documents`,{
+                headers: {
+                    "x-access-token": `${token}`
+                }
+            })
             .then((res) => res.json())
             .then((data) => {
             setDocuments(data);

@@ -105,3 +105,8 @@ h1, h2, h3, p {
 {
     color: #ffffff;
 }
+
+
+.login-err {
+    background-color: #ff7675;
+}

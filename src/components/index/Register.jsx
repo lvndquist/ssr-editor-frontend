@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -13,10 +15,12 @@ export default function Register() {
 
         if (!email || !password) {
             setError("Ange email och lösenord.");
+            return;
         }
 
         if (password !== passwordDupe) {
             setError("Lösenord matchar inte.");
+            return;
         }
 
         try {
@@ -51,11 +55,13 @@ export default function Register() {
             })
         });
 
-        if (res?.error) {
+        const data = await res.json();
+
+        if (!res.ok) {
             throw new Error({status: res.error.status, message: res.error.title})
         }
 
-        return res.data;
+        return data;
     }
 
     return (

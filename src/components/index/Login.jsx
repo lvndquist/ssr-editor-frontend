@@ -1,32 +1,30 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function Login({ onLogin }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const nav = useNavigate();
 
     async function handleLoginForm(e) {
         e.preventDefault();
 
         if (!email || !password) {
             setError("Ange email och lösenord.");
+            return;
         }
 
         try {
             const token = await login(email, password);
-            console.log(token);
             onLogin(token);
-            useNavigate("/");
+            console.log("redirect")
+            nav("/");
         } catch (error) {
-            console.log(error);
-            if (error.message === "User not found") {
-                setError("Ingen användare hittades.");
-            } else if (error.message === "Wrong password") {
-                setError("Fel lösenord!");
-            } else {
-                setError(error.message)
-            }
+            console.log(error.message)
+            setError(error.message);
         }
     }
 
@@ -42,11 +40,18 @@ export default function Login({ onLogin }) {
             })
         });
 
-        if (res?.error) {
-            throw new Error({status: res.error.status, message: res.error.title})
-        }
 
-        return data.token;
+        const data = await res.json();
+        if (!res.ok) {
+            if (data.error.title === "Wrong password") {
+                throw new Error("Fel lösenord!");
+            }
+            if (data.error.title === "User not found") {
+                throw new Error("Användare hittades ej!")
+            }
+            throw new Error("Något blev fel!")
+        }
+        return data.data.token;
     }
 
     return (
@@ -72,7 +77,7 @@ export default function Login({ onLogin }) {
                 />
 
                 {error &&
-                    <p>{error}</p>
+                    <p className="login-err">{error}</p>
                 }
                 <button className="login-form-btn" type="submit"> Logga in</button>
             </form>
