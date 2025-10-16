@@ -14,6 +14,7 @@ function App() {
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
 
     function loginHandle(newAuthToken) {
+        console.log("authtoken")
         localStorage.setItem("authToken", newAuthToken);
         setAuthToken(newAuthToken);
     }

@@ -12,17 +12,18 @@ export default function DocumentList() {
         const token = localStorage.getItem("authToken");
         fetch(`${apiUrl}/documents`,{
                 headers: {
-                    "x-access-token": `${token}`
+                    "x-access-token": token
                 }
             })
             .then((res) => res.json())
             .then((data) => {
-            setDocuments(data);
-            setLoading(false);
-        }).catch((err) => {
-            console.log("Failed to fetch documents: ", err);
-            setLoading(false);
-        });
+            console.log(data.data)
+            setDocuments(data.data);
+            setLoading(false);})
+            .catch((err) => {
+                console.log("Failed to fetch documents: ", err);
+                setLoading(false);
+            });
     }, []);
 
     if (loading) {
@@ -30,24 +31,24 @@ export default function DocumentList() {
     }
     return (
         <div className = "document-list-container">
-            {documents.map((document) => (
+            {documents.map((doc) => (
                 <Link
-                    to={`/document/${document._id}`}
+                    to={`/document/${doc._id}`}
                     className='document-list-item'
-                    key={document._id}
+                    key={doc._id}
                 >
                     <span className="document-list-item-title">
-                        {document.title}
+                        {doc.document.title}
                     </span>
                     <span className='document-list-item-preview'>
                         <span className="document-list-item-text">
-                            {document.text}
+                            {doc.document.content}
                         </span>
                     </span>
 
                     <span className='document-list-item-container'>
                         <span className="document-list-item-date">
-                            @{document.updatedAt.slice(0, 10)}
+                            @{doc.updatedAt.slice(0, 10)}
                         </span>
                     </span>
                 </Link>

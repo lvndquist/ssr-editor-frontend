@@ -21,7 +21,7 @@ export default function SaveDocument({document, save, disabled = false, onSaved}
 
             }, 2500);
         } catch (err) {
-            console.log(err);
+            console.error(err);
             setSaveStatus("error");
         } finally {
             setIsSaving(false);
@@ -55,7 +55,7 @@ export default function SaveDocument({document, save, disabled = false, onSaved}
     return (
         <button
             onClick={handleSave}
-            disabled={isSaving || disabled}
+            disabled={isSaving || disabled || saveStatus === "error"}
             className={buttonClass()}
         >
             {buttonText()}

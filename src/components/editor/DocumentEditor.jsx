@@ -2,19 +2,26 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DocumentEditorBar from './DocumentEditorBar.jsx';
 
-const apiUrl = import.meta.env.API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function DocumentEditor() {
 
-    const [document, setDocument] = useState(null);
+    const [doc, setDoc] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { id } = useParams();
     const [originalDoc, setOriginalDoc] = useState(null);
     const [hasChanged, setHasChanged] = useState(false);
 
+
+    const token = localStorage.getItem("authToken");
+
     useEffect(() => {
-        fetch(`${apiUrl}/documents/${id}`)
+        fetch(`${apiUrl}/documents/${id}`, {
+            headers: {
+                "x-access-token": token
+            }
+        })
         .then((res) => {
             if (!res.ok){
                 throw new Error(`HTTP ERROR: ${res.status}`);
@@ -22,9 +29,8 @@ export default function DocumentEditor() {
             return res.json();
         })
         .then((data) => {
-            const documentData = Array.isArray(data) ? data[0] : data;
-            setOriginalDoc(documentData);
-            setDocument(documentData);
+            setOriginalDoc(data.data);
+            setDoc(data.data);
             setLoading(false);
         })
         .catch((err) => {
@@ -55,7 +61,7 @@ export default function DocumentEditor() {
             }
         }
 
-        if (!document) {
+        if (!doc) {
             return {
                 title: "Dokument hittades ej...",
                 text: `Kunde inte hitta dokument: ${id}`,
@@ -64,34 +70,54 @@ export default function DocumentEditor() {
                 updatedAt: ""
             }
         }
-
+        console.log(doc.document)
         return {
-            title: document.title,
-            text: document.text || "",
+            title: doc.document.title,
+            text: doc.document.content || "",
             state: "loaded",
-            createdAt: document.createdAt,
-            updatedAt: document.updatedAt
+            createdAt: doc.createdAt,
+            updatedAt: doc.updatedAt
         }
     }
 
     useEffect(() => {
-        if (!document ||!originalDoc) {
+        if (!doc ||!originalDoc) {
             return;
         }
-        console.log(document.title !== originalDoc.title)
-        console.log(document.text !== originalDoc.text)
-        setHasChanged (
-            document.title !== originalDoc.title ||
-            document.text !== originalDoc.text
-        );
-    }, [document, originalDoc]);
 
-    const handleChange = (val, field) => {
-        setDocument({...document, [field]: val, updatedAt: new Date().toISOString()});
+        //console.log(doc.document.title !== originalDoc.title)
+        //console.log(doc.document.content !== originalDoc.content)
+        setHasChanged (
+            doc.document.title !== originalDoc.document.title ||
+            doc.document.content !== originalDoc.document.content
+        );
+    }, [doc, originalDoc]);
+
+    const handleChangeText = (val) => {
+        setDoc(p => ({
+            ...p,
+            document: {
+                ...p.document,
+                content: val
+            },
+            updatedAt: new Date().toISOString()
+        }));
+    }
+
+    const handleChangeTitle = (val) => {
+
+        setDoc(p => ({
+            ...p,
+            document: {
+                ...p.document,
+                title: val
+            },
+            updatedAt: new Date().toISOString()
+        }));
     }
 
     const content = showContent();
-
+    console.log(content)
     return (
         <div className = "document-editor">
             <div className={`document-editor-container ${content.state}`}>
@@ -99,14 +125,14 @@ export default function DocumentEditor() {
                     doc={content}
                     id={id}
                     hasChanges={hasChanged}
-                    onSaved={() => setOriginalDoc(document)}
+                    onSaved={() => setOriginalDoc(doc.document)}
                 ></DocumentEditorBar>
 
                 <input
                     className="document-editor-title"
                     value = {content.title}
                     readOnly={content.state !== "loaded"}
-                    onChange={(e) => handleChange(e.target.value, "title")}
+                    onChange={(e) => handleChangeTitle(e.target.value)}
                     placeholder='Titel'
                     >
                 </input>
@@ -115,7 +141,7 @@ export default function DocumentEditor() {
                     className = "document-editor-text"
                     value={content.text}
                     readOnly={content.state !== "loaded"}
-                    onChange={(e) => handleChange(e.target.value, "text")}
+                    onChange={(e) => handleChangeText(e.target.value)}
                 >
                 </textarea>
                 { content.createdAt && content.updatedAt ? (

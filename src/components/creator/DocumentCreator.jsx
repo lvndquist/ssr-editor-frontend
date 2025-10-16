@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import DocumentCreatorBar from './DocumentCreatorBar.jsx';
 
 export default function DocumentCreator() {
-    
+
     const [document, setDocument] = useState(null);
     const [originalDoc, setOriginalDoc] = useState(null);
     const [hasChanged, setHasChanged] = useState(false);
