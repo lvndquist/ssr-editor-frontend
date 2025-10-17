@@ -70,7 +70,6 @@ export default function DocumentEditor() {
                 updatedAt: ""
             }
         }
-        console.log(doc.document)
         return {
             title: doc.document.title,
             text: doc.document.content || "",
@@ -117,7 +116,6 @@ export default function DocumentEditor() {
     }
 
     const content = showContent();
-    console.log(content)
     return (
         <div className = "document-editor">
             <div className={`document-editor-container ${content.state}`}>

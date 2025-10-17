@@ -27,8 +27,8 @@ export default function DocumentCreator() {
         if (!document ||!originalDoc) {
             return;
         }
-        console.log(document.title !== originalDoc.title)
-        console.log(document.text !== originalDoc.text)
+        //console.log(document.title !== originalDoc.title)
+        //console.log(document.text !== originalDoc.text)
         setHasChanged (
             document.title !== originalDoc.title ||
             document.text !== originalDoc.text
@@ -40,7 +40,6 @@ export default function DocumentCreator() {
     }
 
     const content = showContent();
-    console.log(document)
     return (
         <div className = "document-editor">
             <div className={"document-editor-container"}>

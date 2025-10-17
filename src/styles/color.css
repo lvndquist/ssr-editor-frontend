@@ -110,3 +110,7 @@ h1, h2, h3, p {
 .login-err {
     background-color: #ff7675;
 }
+
+.logout-link {
+    color: #ffffff;
+}

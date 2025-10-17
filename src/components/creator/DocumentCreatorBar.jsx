@@ -19,7 +19,7 @@ export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
             body: JSON.stringify({
                 document: {
                     title: doc.title !== "" ? doc.title : "Namnlöst Dokument",
-                    content: doc.text
+                    content: doc.text !== "" ? doc.text : ""
                 }
             })
         });
@@ -31,7 +31,6 @@ export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
         return await res.json();
     };
 
-    console.log(hasChanges)
     return (
         <div className='document-editor-bar'>
             <Link to={"/"} className='document-editor-back-link'>
