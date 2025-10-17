@@ -91,4 +91,16 @@ footer {
     text-decoration: none;
 }
 
+.user {
+    padding: 0rem;
+    margin: 0rem;
+    margin-top: .1rem;
+}
 
+.user-control {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}

@@ -5,7 +5,7 @@
     justify-content: space-between;
     padding-left: 1.6rem;
     align-items: center;
-    min-height: 3rem;
+    min-height: 3.1rem;
 }
 
 .document-editor-back-carrot {
@@ -37,4 +37,27 @@
     gap: 1rem;
 }
 
+.share-form {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.share-form-input {
+    padding: 0.5rem 0.6rem;
+    min-width: 20rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #d1d5d5;
+}
+
+
+.share-form-btn {
+    cursor: pointer;
+    border: none;
+    padding: 0rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    margin-right: 0.4rem;
+}
 

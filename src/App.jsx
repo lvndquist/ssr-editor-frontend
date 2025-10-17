@@ -13,18 +13,22 @@ import { useState, useEffect } from 'react';
 function App() {
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
     const [isValid, setIsValid] = useState(false);
+    const [user, setUser] = useState("");
 
-    function loginHandle(newAuthToken) {
-        console.log("authtoken")
+    function loginHandle(newAuthToken, usr) {
         localStorage.setItem("tokenDate", new Date().toISOString());
         localStorage.setItem("authToken", newAuthToken);
+        localStorage.setItem("user", usr);
         setAuthToken(newAuthToken);
+        setUser(usr);
     }
 
     function logoutHandle() {
         localStorage.removeItem("authToken");
         localStorage.removeItem("tokenDate");
+        localStorage.removeItem("user");
         setAuthToken(null);
+        setUser("");
     }
 
     useEffect(() => {
@@ -37,6 +41,8 @@ function App() {
 
                 if (timeElapsed < 24) {
                     setIsValid(true);
+                    const savedUser = localStorage.getItem("user");
+                    setUser(savedUser);
                 } else {
                     logoutHandle();
                 }
@@ -51,10 +57,10 @@ function App() {
     return (
         <>
             <div className='app-container'>
-                <Header onLogout={logoutHandle} isValid={isValid}/>
+                <Header onLogout={logoutHandle} isValid={isValid} user={user}/>
                 <main>
                     <Routes>
-                        <Route path="/login" element={authToken && isValid ? <Navigate to="/" /> : <Login onLogin={loginHandle}/>}/>
+                        <Route path="/login" element={authToken && isValid ? <Navigate to="/" /> : <Login onLogin={loginHandle} />}/>
                         <Route path="/register" element={authToken && isValid ? <Navigate to="/" /> : <Register/>}/>
                         <Route path="/" element={authToken && isValid ? <IndexPage/> : <Navigate to="/login"/>}/>
                         <Route path="/document/:id" element={authToken && isValid ? <DocumentEditor/> : <Navigate to="/login"/>}/>

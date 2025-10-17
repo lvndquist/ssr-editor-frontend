@@ -107,10 +107,16 @@ h1, h2, h3, p {
 }
 
 
-.login-err {
+.login-err,
+.register-form-err {
     background-color: #ff7675;
 }
 
 .logout-link {
     color: #ffffff;
+}
+
+
+.share-form-btn {
+    background-color: #b37dce;
 }

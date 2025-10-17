@@ -19,7 +19,7 @@ export default function Login({ onLogin }) {
 
         try {
             const token = await login(email, password);
-            onLogin(token);
+            onLogin(token, email.split("@")[0]);
             console.log("redirect")
             nav("/");
         } catch (error) {

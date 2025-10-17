@@ -84,8 +84,7 @@ export default function DocumentEditor() {
             return;
         }
 
-        //console.log(doc.document.title !== originalDoc.title)
-        //console.log(doc.document.content !== originalDoc.content)
+
         setHasChanged (
             doc.document.title !== originalDoc.document.title ||
             doc.document.content !== originalDoc.document.content
@@ -123,7 +122,7 @@ export default function DocumentEditor() {
                     doc={content}
                     id={id}
                     hasChanges={hasChanged}
-                    onSaved={() => setOriginalDoc(doc.document)}
+                    onSaved={() => { setOriginalDoc(doc) }}
                 ></DocumentEditorBar>
 
                 <input

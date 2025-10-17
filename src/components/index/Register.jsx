@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function Register() {
+    const location = useLocation();
+    const inv = new URLSearchParams(location.search).get("inv");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordDupe, setPasswordDupe] = useState("");
@@ -33,13 +35,7 @@ export default function Register() {
             }
         } catch (error) {
             console.log(error);
-            if (error.message === "User already exists") {
-                setError("Användare finns redan.");
-            } else if (error.message === "Email or password missing") {
-                setError("Du måste ange email och lösenord.");
-            } else {
-                setError(error.message)
-            }
+            setError(error.message)
         }
     }
 
@@ -51,16 +47,22 @@ export default function Register() {
             },
             body: JSON.stringify({
                 email: email,
-                password: password
+                password: password,
+                invite: inv
             })
         });
 
+
         const data = await res.json();
-
         if (!res.ok) {
-            throw new Error({status: res.error.status, message: res.error.title})
+            if (data.error.title === "User already exists") {
+                throw new Error("Användaren finns redan!");
+            } else if (data.error.title === "Email or password missing") {
+                throw new Error("Användarnamn och lösenord krävs.");
+            } else {
+                throw new Error("Något blev fel!")
+            }
         }
-
         return data;
     }
 

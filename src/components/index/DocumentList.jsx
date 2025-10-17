@@ -17,8 +17,7 @@ export default function DocumentList() {
             })
             .then((res) => res.json())
             .then((data) => {
-            console.log(data.data)
-            setDocuments(data.data);
+            setDocuments(Array.isArray(data.data) ? data.data : []);
             setLoading(false);})
             .catch((err) => {
                 console.log("Failed to fetch documents: ", err);
