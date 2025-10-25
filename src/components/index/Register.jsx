@@ -11,6 +11,7 @@ export default function Register() {
     const [passwordDupe, setPasswordDupe] = useState("");
     const [error, setError] = useState("");
     const [status, setStatus] = useState("");
+    const nav = useNavigate();
 
     async function handleRegisterForm(e) {
         e.preventDefault();
@@ -27,7 +28,7 @@ export default function Register() {
 
         try {
             const data = await register(email, password);
-            if (data.message === "User successfully registered") {
+            if (data.data.message === "User successfully registered.") {
                 setEmail("");
                 setPassword("");
                 setPasswordDupe("");
@@ -99,6 +100,10 @@ export default function Register() {
 
                 {error &&
                     <p className="register-form-err">{error}</p>
+                }
+
+                {status &&
+                    <p className="register-form-status">{status}</p>
                 }
                 <button className="register-form-btn" type="submit"> Skapa </button>
             </form>

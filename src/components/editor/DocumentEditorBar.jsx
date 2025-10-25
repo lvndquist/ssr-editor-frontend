@@ -8,12 +8,13 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
     const [toShare, setToShare] = useState(false);
+    const [sharedStatus, setSharedStatus] = useState("");
     const [shareEmail, setShareEmail] = useState("");
 
     const handleSave = async (doc) => {
 
         const token = localStorage.getItem("authToken");
-
+        console.log(doc)
         const res = await fetch(`${apiUrl}/documents/${id}`, {
             method: "PUT",
             headers: {
@@ -44,22 +45,32 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
 
         const token = localStorage.getItem("authToken");
 
-        const res = await fetch(`${apiUrl}/documents/${id}/share`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-access-token": token
-            },
-            body: JSON.stringify({
-                mail: shareEmail
-            })
-        });
+        try {
+            const res = await fetch(`${apiUrl}/documents/${id}/share`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-access-token": token
+                },
+                body: JSON.stringify({
+                    mail: shareEmail
+                })
+            });
 
-        if (!res.ok) {
-            console.log("Couldnt send invite.")
+            if (!res.ok) {
+                setSharedStatus("Kunde inte dela dokumentet...");
+                console.log("Couldnt send invite.")
+                return;
+            }
+
+            setShareEmail("");
+            setSharedStatus("Dokument delat, kontrollera skräpkorg...");
+            return;
+
+        } catch (err) {
+            console.log(err);
+            setSharedStatus("Kunde inte dela dokumentet...");
         }
-
-        return;
     }
 
     // console.log(hasChanges)
@@ -80,20 +91,23 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
                 toShare ? (
 
                     <div className='document-editor-bar-control'>
-
-                        <form className="share-form" onSubmit={sendInvite}>
-                            <input
-                                className="share-form-input"
-                                type="email"
-                                placeholder="Email"
-                                value={shareEmail}
-                                onChange={e => setShareEmail(e.target.value)}
-                                required
-                            />
-                            <button className="share-form-btn" type="submit">
-                                <FontAwesomeIcon className='document-editor-back-carrot' icon={faPaperPlane}></FontAwesomeIcon>
-                            </button>
-                        </form>
+                        {sharedStatus ? (
+                                <p className="share-status">{sharedStatus}</p>
+                        ) : (
+                            <form className="share-form" onSubmit={sendInvite}>
+                                <input
+                                    className="share-form-input"
+                                    type="email"
+                                    placeholder="Email"
+                                    value={shareEmail}
+                                    onChange={e => setShareEmail(e.target.value)}
+                                    required
+                                />
+                                <button className="share-form-btn" type="submit">
+                                    <FontAwesomeIcon className='document-editor-back-carrot' icon={faPaperPlane}></FontAwesomeIcon>
+                                </button>
+                            </form>
+                        )}
 
                     </div>
 
