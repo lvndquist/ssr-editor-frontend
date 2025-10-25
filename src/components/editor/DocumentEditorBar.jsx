@@ -125,7 +125,10 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
                         }
 
                         <Link to="#" onClick={(e) => {e.preventDefault(); setToShare(true)}} className='document-editor-share-link'>
-                            <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
+                            Dela
+                            {/*
+                                <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
+                            */}
                         </Link>
                         <SaveDocument
                             document = {doc}

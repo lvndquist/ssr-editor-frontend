@@ -7,6 +7,7 @@ export default function DocumentList() {
 
     const [documents, setDocuments] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -21,12 +22,15 @@ export default function DocumentList() {
             setLoading(false);})
             .catch((err) => {
                 console.log("Failed to fetch documents: ", err);
+                setError("Kunde inte ladda dokument.");
                 setLoading(false);
             });
     }, []);
 
     if (loading) {
         return <p>Laddar dokument...</p>
+    } else if (error) {
+        return <p>{error}</p>
     }
     return (
         <div className = "document-list-container">
