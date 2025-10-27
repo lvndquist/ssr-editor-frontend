@@ -73,3 +73,36 @@
     margin: 0;
     margin-right: 0.7rem;
 }
+
+.code-editor {
+}
+
+.code-exec {
+    display: flex;
+    margin-top: .5rem;
+    margin-left: 2rem;
+}
+
+.code-exec > button {
+    border: none;
+    padding: 0.4rem 1.2rem;
+    min-width: 7.5rem;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+.code-result {
+    margin-left: 2rem;
+}
+
+.code-result > pre {
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+.code-result > p {
+    padding: 0;
+    margin: 0;
+}
+

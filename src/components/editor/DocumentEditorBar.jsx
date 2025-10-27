@@ -6,10 +6,18 @@ import {useState} from "react";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
+export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeChange}) {
     const [toShare, setToShare] = useState(false);
     const [sharedStatus, setSharedStatus] = useState("");
     const [shareEmail, setShareEmail] = useState("");
+
+    const [mode, setMode] = useState();
+    const handleToggle = () => {
+        const toggle = !mode;
+        setMode(toggle);
+        onModeChange(toggle);
+    }
+
 
     const handleSave = async (doc) => {
 
@@ -24,7 +32,8 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
             body: JSON.stringify({
                 document: {
                     title: doc.title,
-                    content: doc.text
+                    content: doc.text,
+                    mode: doc.mode ? "code" : "text"
                 }
             })
         });
@@ -123,6 +132,13 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved}) {
                                 <p className = "document-editor-bar-changes">Inga osparade ändringar</p>
                             </>
                         }
+
+                        <Link to="#" onClick={(e) => {e.preventDefault(); handleToggle()}} className='document-editor-share-link'>
+                            Kod
+                            {/*
+                                <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
+                            */}
+                        </Link>
 
                         <Link to="#" onClick={(e) => {e.preventDefault(); setToShare(true)}} className='document-editor-share-link'>
                             Dela

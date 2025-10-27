@@ -121,3 +121,11 @@ h1, h2, h3, p {
 .share-form-btn {
     background-color: #b37dce;
 }
+
+.code-editor {
+    border-bottom: 1px solid #b37dce;
+}
+
+.code-result > p {
+    color: #000;
+}

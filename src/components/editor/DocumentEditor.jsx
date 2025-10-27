@@ -75,7 +75,8 @@ export default function DocumentEditor() {
             text: doc.document.content || "",
             state: "loaded",
             createdAt: doc.createdAt,
-            updatedAt: doc.updatedAt
+            updatedAt: doc.updatedAt,
+            mode: doc.document.mode
         }
     }
 
@@ -114,6 +115,7 @@ export default function DocumentEditor() {
         }));
     }
 
+    console.log(originalDoc)
     const content = showContent();
     return (
         <div className = "document-editor">

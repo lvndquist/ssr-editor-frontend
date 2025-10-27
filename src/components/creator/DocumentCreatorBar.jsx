@@ -1,11 +1,20 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import {useState} from "react";
 import SaveDocument from '../editor/SaveDocument.jsx';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
+export default function DocumentCreatorBar({doc, hasChanges, onSaved, onModeChange}) {
+
+    const [mode, setMode] = useState(false);
+
+    const handleToggle = () => {
+        const toggle = !mode;
+        setMode(toggle);
+        onModeChange(toggle);
+    }
 
     const handleSave = async (doc) => {
         const token = localStorage.getItem("authToken");
@@ -19,7 +28,8 @@ export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
             body: JSON.stringify({
                 document: {
                     title: doc.title !== "" ? doc.title : "Namnlöst Dokument",
-                    content: doc.text !== "" ? doc.text : ""
+                    content: doc.text !== "" ? doc.text : "",
+                    mode: mode ? "code" : "text"
                 }
             })
         });
@@ -47,6 +57,14 @@ export default function DocumentCreatorBar({doc, hasChanges, onSaved}) {
                         <p className = "document-editor-bar-changes">Inga osparade ändringar</p>
                     </>
                 }
+
+                <Link to="#" onClick={(e) => {e.preventDefault(); handleToggle()}} className='document-editor-share-link'>
+                    Kod
+                    {/*
+                        <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
+                    */}
+                </Link>
+
                 <SaveDocument
                     document = {doc}
                     save = {handleSave}
