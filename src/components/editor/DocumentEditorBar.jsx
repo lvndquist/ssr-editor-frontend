@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faPaperPlane, faShareFromSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import SaveDocument from './SaveDocument.jsx';
@@ -11,6 +11,7 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
     const [sharedStatus, setSharedStatus] = useState("");
     const [shareEmail, setShareEmail] = useState("");
     const [mode, setMode] = useState(doc?.mode === "code");
+    const nav = useNavigate();
 
     useEffect(() => {
         if (doc?.state !== "loading") {
@@ -22,6 +23,31 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
         const toggle = !mode;
         setMode(toggle);
         onModeChange(toggle);
+    }
+
+    const deleteDoc = async () => {
+        const token = localStorage.getItem("authToken");
+
+        const res = await fetch(`${apiUrl}/documents/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": token
+            }
+        });
+
+        if (!res.ok) {
+            console.log("Coulnt remove document")
+            throw new Error("Failed to delete document");
+        }
+
+        nav("/");
+
+        if (res.status === 204) {
+            return { success: true };
+        }
+
+        return await res.json();
     }
 
     const handleSave = async (doc) => {
@@ -143,6 +169,13 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
 
                         <Link to="#" onClick={(e) => {e.preventDefault(); setToShare(true)}} className='document-editor-share-link'>
                             Dela
+                            {/*
+                                <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
+                            */}
+                        </Link>
+
+                        <Link to="#" onClick={(e) => {e.preventDefault(); deleteDoc()}} className='document-editor-share-link'>
+                            Ta bort
                             {/*
                                 <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
                             */}
