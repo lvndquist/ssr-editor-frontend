@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faPaperPlane, faShareFromSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import SaveDocument from './SaveDocument.jsx';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -10,19 +10,24 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
     const [toShare, setToShare] = useState(false);
     const [sharedStatus, setSharedStatus] = useState("");
     const [shareEmail, setShareEmail] = useState("");
+    const [mode, setMode] = useState(doc?.mode === "code");
 
-    const [mode, setMode] = useState();
+    useEffect(() => {
+        if (doc?.state !== "loading") {
+            setMode(doc.mode === "code");
+        }
+    }, [doc?.state]);
+
     const handleToggle = () => {
         const toggle = !mode;
         setMode(toggle);
         onModeChange(toggle);
     }
 
-
     const handleSave = async (doc) => {
 
         const token = localStorage.getItem("authToken");
-        console.log(doc)
+
         const res = await fetch(`${apiUrl}/documents/${id}`, {
             method: "PUT",
             headers: {
@@ -33,7 +38,7 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
                 document: {
                     title: doc.title,
                     content: doc.text,
-                    mode: doc.mode ? "code" : "text"
+                    mode: mode ? "code" : "text"
                 }
             })
         });
@@ -82,7 +87,6 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
         }
     }
 
-    // console.log(hasChanges)
     return (
         <div className='document-editor-bar'>
 
@@ -135,9 +139,6 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
 
                         <Link to="#" onClick={(e) => {e.preventDefault(); handleToggle()}} className='document-editor-share-link'>
                             Kod
-                            {/*
-                                <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
-                            */}
                         </Link>
 
                         <Link to="#" onClick={(e) => {e.preventDefault(); setToShare(true)}} className='document-editor-share-link'>
@@ -146,6 +147,7 @@ export default function DocumentEditorBar({doc, id, hasChanges, onSaved, onModeC
                                 <FontAwesomeIcon className='document-editor-share-icon' icon={faShareFromSquare}></FontAwesomeIcon>
                             */}
                         </Link>
+
                         <SaveDocument
                             document = {doc}
                             save = {handleSave}
