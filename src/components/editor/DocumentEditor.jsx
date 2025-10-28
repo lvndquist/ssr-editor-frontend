@@ -142,7 +142,7 @@ export default function DocumentEditor() {
             setLoadingResult(false);
         }
     }
-
+    //console.log(doc)
     const content = showContent();
     return (
         <div className = "document-editor">
@@ -199,6 +199,9 @@ export default function DocumentEditor() {
                         </textarea>
                         { content.createdAt && content.updatedAt ? (
                             <>
+                                <p className='document-editor-date'>
+                                    <span>Ägare: {doc.owner}</span>
+                                </p>
                                 <p className='document-editor-date'>
                                     <span>Uppdaterad </span>
                                     {content.updatedAt.slice(0,10) + " " + content.updatedAt.slice(11,19)}
