@@ -41,6 +41,7 @@ export default function Register() {
     }
 
     async function register(email, password) {
+        console.log(apiUrl)
         const res = await fetch(`${apiUrl}/register`, {
             method: "POST",
             headers: {
