@@ -31,7 +31,10 @@ export default function DocumentList() {
         return <p>Laddar dokument...</p>
     } else if (error) {
         return <p>{error}</p>
+    } else if (documents.length === 0) {
+        return <p>Inga dokument hittades</p>
     }
+
     return (
         <div className = "document-list-container">
             {documents.map((doc) => (
